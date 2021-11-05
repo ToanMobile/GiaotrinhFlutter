@@ -1,5 +1,6 @@
+
 import 'package:flutter/material.dart';
-import 'package:lesson5/list.dart';
+import 'package:lesson5/screen2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void navigationList() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Page2()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,11 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         height: double.infinity,
         margin: const EdgeInsets.all(50),
         padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Colors.yellow,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          border: Border.symmetric(vertical: BorderSide.none)
-        ),
+        decoration: BoxDecoration(color: Colors.yellow, borderRadius: BorderRadius.all(Radius.circular(10)), border: Border.symmetric(vertical: BorderSide.none)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -72,15 +73,26 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(Icons.home, size: 50, color: Colors.green,),
-                Image.asset('assets/images/demo2.png', width: 50, height: 50,),
+                Icon(
+                  Icons.home,
+                  size: 50,
+                  color: Colors.green,
+                ),
+                Image.asset(
+                  'assets/images/demo2.png',
+                  width: 50,
+                  height: 50,
+                ),
               ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(onPressed: _incrementCounter, child: Text('Click Button')),
             ),
-            IconButton(onPressed: _incrementCounter, icon: Icon(Icons.exit_to_app),),
+            IconButton(
+              onPressed: _incrementCounter,
+              icon: Icon(Icons.exit_to_app),
+            ),
             Container(
               color: Colors.pinkAccent,
               width: 300,
@@ -110,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: navigationList,
         tooltip: 'Increment',
         child: Text('Demo'),
       ), // This trailing comma makes auto-formatting nicer for build methods.
