@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:coin_demo/utils/dimens.dart';
 
 import 'coin_responsitory.dart';
+import 'details_page.dart';
 import 'widget/widget_item.dart';
 
 class Top100CoinPage extends StatefulWidget {

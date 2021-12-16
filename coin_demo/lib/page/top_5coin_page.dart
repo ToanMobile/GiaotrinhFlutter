@@ -1,7 +1,5 @@
 import 'package:coin_demo/model/coin_model.dart';
-import 'package:coin_demo/page/top_100coin_page.dart';
 import 'package:coin_demo/page/widget/widget_item.dart';
-import 'package:coin_demo/utils/dimens.dart';
 import 'package:flutter/material.dart';
 
 import 'coin_responsitory.dart';
@@ -21,9 +19,9 @@ class _Top5CoinPageState extends State<Top5CoinPage> {
   void initState() {
     super.initState();
     listTopAll = CoinResponsitory.listCoinModel;
-    listTopAll.sort((a,b) => b.marketCapChangePercentage24h.compareTo(a.marketCapChangePercentage24h));
+    listTopAll.sort((a, b) => (b.marketCapChangePercentage24h ?? 0).compareTo((a.marketCapChangePercentage24h ?? 0)));
     listTop5Coin = listTopAll.take(5).toList();
-    print('listCoinModel::'+ listTop5Coin.toString());
+    print('listCoinModel::' + listTop5Coin.toString());
   }
 
   @override

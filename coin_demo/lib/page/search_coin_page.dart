@@ -32,9 +32,7 @@ class _SearchCoinPageState extends State<SearchCoinPage> {
           TextField(
             onChanged: (text) {
               listSearch = listTopAll.where((element) => element.name?.toLowerCase().contains(text) == true).toList();
-              setState(() {
-
-              });
+              setState(() {});
             },
           ),
           Expanded(

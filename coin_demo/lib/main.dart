@@ -1,13 +1,14 @@
+import 'package:coin_demo/page/coin_responsitory.dart';
 import 'package:coin_demo/page/favourite_page.dart';
 import 'package:coin_demo/page/search_coin_page.dart';
 import 'package:coin_demo/page/top_100coin_page.dart';
 import 'package:coin_demo/page/top_5coin_page.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'model/coin_model.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  CoinResponsitory coinResponsitory = CoinResponsitory();
+  await coinResponsitory.initDatabase();
   runApp(const MyApp());
 }
 
@@ -44,9 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Favourite coin',
   ];
 
-  final listWidgetHome = [
-    Top100CoinPage(), Top5CoinPage(), SearchCoinPage(), FavouritePage()
-  ];
+  final listWidgetHome = [Top100CoinPage(), Top5CoinPage(), SearchCoinPage(), FavouritePage()];
 
   void onTapBottom(int indexItem) {
     setState(() {
