@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const DemoList(title: 'Flutter Demo Lesson 3'),
+      home: const DemoString(title: 'Flutter Demo Lesson 3'),
     );
   }
 }
@@ -30,11 +30,18 @@ class DemoString extends StatefulWidget {
 }
 
 class _DemoStringState extends State<DemoString> {
-  var demoString = "Demo lesson 3 khoa 2";
+  var demoString = "Demo lesson";
   var resultLength = "";
   var resultIndexOf = "";
   var resultSubString = "";
   var resultSplit = "";
+
+  var lesson3 = 1;
+
+  bool isGiau = false;
+  int cayVang =1;
+  String toan2 = "Toan dang day hoc";
+  List toan3 = ["item1","item2", "item3"];
 
   void _countLength() {
     setState(() {
@@ -44,19 +51,19 @@ class _DemoStringState extends State<DemoString> {
 
   void _indexOf() {
     setState(() {
-      resultIndexOf = demoString.indexOf('e').toString();
+      resultIndexOf = demoString.indexOf('o').toString();
     });
   }
 
   void _subString() {
     setState(() {
-      resultSubString = demoString.substring(5, 13);
+      resultSubString = demoString.substring(2, 6);
     });
   }
 
   void _split() {
     setState(() {
-      resultSplit = demoString.split('lesson 3').toString();
+      resultSplit = demoString.split("lesson").toString();
     });
   }
 
@@ -70,9 +77,11 @@ class _DemoStringState extends State<DemoString> {
         child: Column(
           children: [
             const SizedBox(height: 40),
-            Text(
-              demoString,
-              style: const TextStyle(fontSize: 20),
+            Center(
+              child: Text(
+                demoString,
+                style: const TextStyle(fontSize: 20), textAlign: TextAlign.center,
+              ),
             ),
             const SizedBox(height: 100),
             Text(
@@ -127,7 +136,7 @@ class _DemoListState extends State<DemoList> {
   @override
   void initState() {
     super.initState();
-    demoList.addAll(['Flutter', 'Android', 'IOS', 'React Native', 'IONIC', 'XAMARIN']);
+    demoList.addAll(['Flutter', 'IOS', 'React Native', 'IONIC', 'XAMARIN', 'Android']);
   }
 
   void _countLength() {
@@ -138,49 +147,55 @@ class _DemoListState extends State<DemoList> {
 
   void _checkItem() {
     setState(() {
-      checkItem = demoList.contains('Flutter');
+      checkItem = demoList.contains("android");
     });
   }
 
   void _getItem() {
     setState(() {
-      resultGetItem = demoList[5].toString();
+      resultGetItem = demoList[2].toString();
     });
   }
 
   void _getItemTake() {
     setState(() {
-      resultTakeItem.addAll(demoList.take(3));
+      resultTakeItem.clear();
+      resultTakeItem.addAll(demoList.skip(2));
     });
   }
 
   void _getItemFirst() {
     setState(() {
-      resultGetItem = demoList.last.toString();
+      resultGetItemFirst = demoList.first;
     });
   }
 
   void _getItemLast() {
     setState(() {
-      resultGetItem = "${demoList.last}";
+      resultGetItemLast = "${demoList.last}";
     });
   }
 
   void _addItem() {
     setState(() {
-      if (resultAddItem.isEmpty) {
-        resultAddItem.addAll(demoList);
+      if(resultAddItem.isEmpty){
+        resultAddItem = demoList;
       }
-      resultAddItem.add("test");
+      resultAddItem.add("Lesson1");
+      resultAddItem.addAll(["Lesson 2", "Lesson 3"]);
+      resultAddItem = ["Lesson 2", "Lesson 3"];
     });
   }
 
   void _removeItem() {
     setState(() {
-      if (resultRemoveItem.isEmpty) {
+      if(resultRemoveItem.isEmpty){
         resultRemoveItem.addAll(demoList);
       }
-      resultRemoveItem.removeAt(0);
+      resultRemoveItem.removeAt(1);
+      //resultRemoveItem.remove('IOS');
+      //resultRemoveItem.removeRange(1,4); //Start index 1 to index 3 (length = 3)
+      //resultRemoveItem.removeWhere((item) => item.toString().startsWith('I'));
     });
   }
 
@@ -192,16 +207,23 @@ class _DemoListState extends State<DemoList> {
 
   void _whereItem() {
     setState(() {
-      resultWhere.addAll(demoList.where((e) => e.contains('Android')));
+      resultWhere.clear();
+      resultWhere.addAll(demoList.where((element) => (element as String) == "IOS" || (element as String) == "Android"));
+      // var listNew = demoList.where((element) => element.toString() == 'Android');
+      // resultWhere.addAll(listNew);
       print('resultWhere:' + resultWhere.toString());
     });
   }
 
   void _mergeItem() {
     setState(() {
-      //resultMerge = [resultWhere, resultRemoveItem];
-      resultMerge.addAll(resultWhere);
+      // resultMerge.addAll(resultAddItem);
+      // resultMerge.addAll(resultWhere);
+      resultMerge.clear();
+      /*resultAddItem.forEach((e) => resultMerge.add(e));
+      resultWhere.forEach((e) => resultMerge.add(e));*/
       resultMerge.addAll(resultRemoveItem);
+      resultMerge.addAll(resultWhere);
       print('resultWhere:' + resultMerge.toString());
     });
   }
@@ -210,16 +232,18 @@ class _DemoListState extends State<DemoList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Center(child: Text(widget.title, style: TextStyle(fontSize: 20), textAlign: TextAlign.center,)),
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
               const SizedBox(height: 40),
-              Text(
-                demoList.toString(),
-                style: const TextStyle(fontSize: 20),
+              Center(
+                child: Text(
+                  demoList.toString(),
+                  style: const TextStyle(fontSize: 30, fontStyle: FontStyle.normal), textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: 100),
               Text(
@@ -248,7 +272,7 @@ class _DemoListState extends State<DemoList> {
               ),
               ElevatedButton(onPressed: () => _getItemFirst(), child: const Text('Get Item First')),
               Text(
-                'Get Item Last: $resultGetItemFirst',
+                'Get Item Last: $resultGetItemLast',
                 style: const TextStyle(fontSize: 20),
               ),
               ElevatedButton(onPressed: () => _getItemLast(), child: const Text('Get Item Last')),
