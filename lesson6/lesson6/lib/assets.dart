@@ -4,6 +4,6 @@ class DImages {
 
   static const String assetsBg = 'assets/bg_bottom.png';
   static const String assetsBgTop = 'assets/bg_top.png';
-  static const String assetsIcIcon = 'assets/ic_icon.png';
+  static const String assetsIcIcon = 'assets/ic_icon.jpg';
 
 }
